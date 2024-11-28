@@ -1,0 +1,29 @@
+name: Run Java JAR
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-jar-file:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # Java distribution
+          java-version: '17'      # Adjust to your required version
+
+      # Step 3: Run the JAR file
+      - name: Run JAR file
+        run: java -jar ci-cd-check.jar
